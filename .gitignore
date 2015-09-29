@@ -1,14 +1,7 @@
-problem1/ 
-problem2/ 
-results/ 
-solver/ 
-domain/ 
-mesh/ 
 problem.xml
 /mesh/
 /mesh2xml.py
 /mat2_p2D.py
-/domain/
 /dnr_p2D.py
 /problem1/
 /problem2/
