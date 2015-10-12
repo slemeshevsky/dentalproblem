@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<dolfin xmlns:dolfin="http://fenicsproject.org">
+    <parameters name="dolfin">
+        <parameters name="mesh">
+            <parameter key="path" type="string" value="./mesh/mesh.xml"/>
+            <parameter key="domains" type="string" value="./mesh/mesh_physical_region.xml"/>
+            <parameter key="bounds" type="string" value="./mesh/mesh_facet_region.xml"/>
+        </parameters>
+        <parameters name="coefficients">
+            <parameters name="Young">
+                <parameter key="1" type="double" value="29.0e9"/>
+                <parameter key="2" type="double" value="200e9"/>
+            </parameters>
+            <parameters name="Poisson">
+                <parameter key="1" type="double" value="0.3"/>
+                <parameter key="2" type="double" value="0.31"/>
+            </parameters>
+        </parameters>
+        <parameters name="boundCoefficients">
+            <parameters name="g">
+                <parameters name="1">
+                    <parameter key="x" type="double" value="0"/>
+                    <parameter key="y" type="double" value="0"/>
+                    <parameter key="z" type="double" value="-1.0e4"/>
+                </parameters>
+            </parameters>
+        </parameters>
+        <parameters name="results">
+            <parameter key="displacement" type="string" value="./results/displacement.pvd"/>
+            <parameter key="stress" type="string" value="./results/stress.pvd"/>
+            <parameter key="subdomains" type="string" value="./results/subdomains.pvd"/>
+            <parameter key="boundaries" type="string" value="./results/boundaries.pvd"/>
+        </parameters>
+    </parameters>
+</dolfin>

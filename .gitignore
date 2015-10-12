@@ -1,4 +1,3 @@
-problem.xml
 /mesh/
 /mesh2xml.py
 /mat2_p2D.py
@@ -9,3 +8,4 @@ problem.xml
 /solver/
 /xml_writer.py
 /xml_writer.pyc
+/domain/model3d.xml
