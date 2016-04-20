@@ -1,18 +1,18 @@
 DefineConstant[ lc = { 0.2, Path "Gmsh/Parameters"}];
-DefineConstant[ alfa = { 12, Path "Gmsh/Parameters"}];
+DefineConstant[ alfa = { 18, Path "Gmsh/Parameters"}];
 DefineConstant[ height = { 3, Path "Gmsh/Parameters"}];
 DefineConstant[ width = { 2, Path "Gmsh/Parameters"}];
-DefineConstant[ space = { 0.25, Path "Gmsh/Parameters"}];
-DefineConstant[ delta = { 0.25, Path "Gmsh/Parameters"}];
-DefineConstant[ border = { 0.25, Path "Gmsh/Parameters"}];
+DefineConstant[ space = { 0.2, Path "Gmsh/Parameters"}];
+DefineConstant[ border = { 0.4, Path "Gmsh/Parameters"}];
+DefineConstant[ delta = { 0.2, Path "Gmsh/Parameters"}];
 DefineConstant[ uu_width = { width - height * Tan(Pi*alfa / 180), Path "Gmsh/Parameters"}];
 DefineConstant[ uuu_width = { width - (height + space) *Tan(Pi*alfa / 180), Path "Gmsh/Parameters"}];
 DefineConstant[ ll_width = { width - delta * Tan(Pi*alfa / 180), Path "Gmsh/Parameters"}];
 Point(1) = {0, 0, 0, lc};
 Point(2) = {0, height, 0, lc};
 Point(3) = {0, height + space, 0, lc};
-Point(4) = {0, height + space + delta, 0, lc};
-Point(5) = {0, border, 0, lc};
+Point(4) = {0, height + space + border, 0, lc};
+Point(5) = {0, delta, 0, lc};
 
 Point(6) = {width, 0, 0, lc};
 Point(7) = {-width, 0, 0, lc};
