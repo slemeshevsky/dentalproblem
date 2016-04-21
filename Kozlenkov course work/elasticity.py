@@ -106,3 +106,36 @@ Q = FunctionSpace(mesh, "CG", 1)
 vonMises_proj = project(von_Mises(u, mu, lmbda), Q)
 vonMises_file = File("./results/vonmises.pvd")
 vonMises_file << vonMises_proj
+
+
+# Вычисление нормальных и касательных напряжений по упругим деформациям
+# Тензор напряжений
+s = sigma(u, mu, lmbda)
+
+# Вычисляем поверхностные силы
+n = FacetNormal(mesh)
+T = dot(-s,n)
+
+# Вычисляем нормальные и тангенциальные компоненты
+Tn = inner(T,n) # скаляр
+Tt = T - Tn*n   # вектор
+
+# Кусочно-постоянные тестовые функции
+scalar = FunctionSpace(mesh,"DG", 0)
+vector = VectorFunctionSpace(mesh,"DG", 0)
+v = TestFunction(scalar)
+w = TestFunction(vector)
+
+# Получаем кусочно-постоянные функции для напряжений
+normal_stress = Function(scalar)
+shear_stress = Function(vector)
+Ln = (1/FacetArea(mesh))*v*Tn*ds
+Lt = (1/FacetArea(mesh))*inner(w,Tt)*ds
+assemble(Ln, tensor=normal_stress.vector())
+assemble(Lt, tensor=shear_stress.vector())
+
+# Сохраняем напряжения в файлы
+normal_stress_file = File("./results/normal_stress.pvd")
+normal_stress_file << normal_stress
+shear_stress_file = File("./results/shear_stress.pvd")
+shear_stress_file << shear_stress

@@ -19,10 +19,18 @@ params = Parameters("parameters")
 param_file >> params
 info(params, True)
 
-nu_values = np.array([params['coefficients']['Poisson']['1'], params['coefficients']['Poisson']['2']])
-E_values = np.array([params['coefficients']['Young']['1'], params['coefficients']['Young']['2']])*1e-4
-g_value = [params['boundCoefficients']['g']['1']['x']*1e-4, params['boundCoefficients']['g']['1']['x']*1e-4, params['boundCoefficients']['g']['1']['z']*1e-4]
-mu_values, lmbd_values = E_values/(2.0*(1.0 + nu_values)), E_values*nu_values/((1.0 + nu_values)*(1.0 - 2.0*nu_values))
+nu_values = np.array([
+	params['coefficients']['Poisson']['1'],
+	params['coefficients']['Poisson']['2']])
+E_values = np.array([
+	params['coefficients']['Young']['1'],
+	params['coefficients']['Young']['2']])*1e-4
+g_value = [
+	params['boundCoefficients']['g']['1']['x']*1e-4,
+	params['boundCoefficients']['g']['1']['y']*1e-4,
+	params['boundCoefficients']['g']['1']['z']*1e-4]
+mu_values = E_values/(2.0*(1.0 + nu_values)) 
+lmbd_values = E_values*nu_values/((1.0 + nu_values)*(1.0 - 2.0*nu_values))
 
 mesh = Mesh(params['mesh']['path'])
 subdomains = MeshFunction("size_t", mesh, params['mesh']['domains'])
@@ -32,8 +40,6 @@ subdomains_f = File(params['results']['subdomains'])
 subdomains_f << subdomains
 boundaries_f = File(params['results']['boundaries'])
 boundaries_f << boundaries
-
-n = FacetNormal(mesh)
 
 V0 = FunctionSpace(mesh,'DG',0)
 mu = Function(V0)
@@ -55,11 +61,12 @@ dx = Measure('dx', domain=mesh, subdomain_data=subdomains)
 ds = Measure('ds', domain=mesh, subdomain_data=boundaries)
 
 def sigma(v, mu, lmb) : 
-	return 2.0*mu*sym(grad(v)) + lmb*tr(sym(grad(v)))*Identity(v.cell().topological_dimension())
+	return 2.0*mu*sym(grad(v)) + \
+		lmb*tr(sym(grad(v)))*Identity(v.cell().topological_dimension())
 
 def mean_pressure(s) :
-	return 1.0/3.0 * tr(s)
-
+	 return 1.0/3.0 * tr(s)
+()
 def deviatoric_stress(s) :
 	return s - mean_pressure(s)*Identity(v.cell().topological_dimension())
 
@@ -67,8 +74,14 @@ def von_Mises(v, mu, lmb) :
 	sigma_ = sigma(v, mu, lmb)
 	dev_sigma = deviatoric_stress(sigma_)
 	return sqrt(3.0/2*inner(dev_sigma, dev_sigma))
-	
-a = inner(sigma(u, mu, lmbda),sym(grad(v)))*dx(0) + inner(sigma(u, mu, lmbda),sym(grad(v)))*dx(1)
+
+# def normal_stress(v, mu, lmb, mesh) :
+# 	sigma_ = sigma(v, mu, lmb)
+# 	n = FacetNormal(mesh)
+# 	T = -dot(s,n)
+
+a = inner(sigma(u, mu, lmbda),sym(grad(v)))*dx(0) + \
+    inner(sigma(u, mu, lmbda),sym(grad(v)))*dx(1)
 L = inner(g,v)*ds(2)
 
 u = Function(V)
@@ -92,3 +105,5 @@ Q = FunctionSpace(mesh, "CG", 1)
 vonMises_proj = project(von_Mises(u, mu, lmbda), Q)
 vonMises_file = File("./results/vonmises.pvd")
 vonMises_file << vonMises_proj
+
+
