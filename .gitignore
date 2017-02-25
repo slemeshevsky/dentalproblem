@@ -15,7 +15,17 @@
 /Kozlenkov\ course\ work/results
 /Kozlenkov\ course\ work/domain/*.msh
 /Kozlenkov\ course\ work/domain/*.xml
-
-
-
 /Kozlenkov\ course\ work/report
+
+
+/Kozlenkov\ diploma\ work/.idea/
+/Kozlenkov\ diploma\ work/results
+
+!/Kozlenkov\ diploma\ work/domain/
+/Kozlenkov\ diploma\ work/domain/*
+/Kozlenkov\ diploma\ work/domain/final.geo
+
+!/Kozlenkov\ diploma\ work/report/
+/Kozlenkov\ diploma\ work/report/*
+!/Kozlenkov\ diploma\ work/report/main.tex
+
