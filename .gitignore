@@ -1,3 +1,4 @@
+.DS_Store
 /mesh/
 /mesh2xml.py
 /mat2_p2D.py
@@ -12,3 +13,9 @@
 
 /Kozlenkov\ course\ work/.idea/
 /Kozlenkov\ course\ work/results
+/Kozlenkov\ course\ work/domain/*.msh
+/Kozlenkov\ course\ work/domain/*.xml
+
+
+
+/Kozlenkov\ course\ work/report
