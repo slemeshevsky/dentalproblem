@@ -37,7 +37,6 @@
 \renewcommand{\Re}{\text {Re}}
 \renewcommand{\Im}{\text {Im}}
 \renewcommand{\baselinestretch}{1.5} % межстрочный интервал
-%\renewcommand\thesection{\arabic{section}} % так как типа дока - extreport, эта команда оставить нормальную нумерацию section
 \setcounter{page}{2} % старт номера страниц
 \setcounter{secnumdepth}{3} % нумерация subsubsection
 \setcounter{tocdepth}{3} % subsubsection в оглавлении
@@ -88,6 +87,7 @@
   {0.5em}
   {}
 
+% chapters format
 \titleformat{\chapter}[display]   
 {\normalfont\huge\bfseries\center}
 {\chaptertitlename\ \thechapter}
@@ -123,7 +123,7 @@
 	\Large{\textbf{РЕФЕРАТ}}
 \end{center}
 
-Курсовая работа, 28 страниц, 16 рисунков, 3 источника, 1 приложение.
+Отчет о преддипломной практике, 28 страниц, 16 рисунков, 3 источника, 1 приложение.
 
 \textbf{\textit{Ключевые слова:}} ТЕОРИЯ УПРУГОСТИ, МЕТОД КОНЕЧНЫХ 
 ЭЛЕМЕНТОВ, ТЕНЗОР ДЕФОРМАЦИИ, PYTHON, FEniCS, 
@@ -148,7 +148,7 @@ GMSH, \\ PARAVIEW
 	\Large{\textbf{РЭФЕРАТ}}
 \end{center}
 
-Курсавая работа, 28 старонак, 16 малюнкаў, 3 крыніцы, 1 дадатак.
+Даклад ад прэддыпломнаый практыцы, 28 старонак, 16 малюнкаў, 3 крыніцы, 1 дадатак.
 
 \textbf{\textit{Ключавыя словы:}} ТЕОРИЯ ПРУГКАСЦІ, МЕТАД КАНЧАТКОВЫХ \\
 ЭЛЕМЕНТАЎ, ТЕНЗАР ДЭФАРМАЦЫІ, PYTHON, FEniCS, 
@@ -175,7 +175,7 @@ PARAVIEW.
 	\Large{\textbf{SUMMARY}}
 \end{center}
 
-Term paper, 28 pages, 16 pictures, 3 sources, 1 appendix.
+Externship report, 28 pages, 16 pictures, 3 sources, 1 appendix.
 
 \textbf{\textit{Keywords:}} ELASTICITY THEORY, FINITE ELEMENT METHOD,
 STRAIN TENSOR, PYTHON, FEniCS, GMSH, 
@@ -513,7 +513,7 @@ DefineConstant[ l_width = { width - delta *
 Далее, задавая контуры как замкнутые циклы линий,
  можно задать поверхности (рисунок \ref{fig: surfaces}).
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\center
 	\includegraphics[scale=0.3]{pictures/surfaces.png}
 	\caption{Поверхности}
@@ -523,14 +523,13 @@ DefineConstant[ l_width = { width - delta *
 Затем, путем объединения поверхностей в замкнутые объемы, можно 
 задавать трехмерные области (рисунок \ref{fig: volumes}).
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\center
-	\includegraphics[scale=0.25]{pictures/volumes.png}
+	\includegraphics[scale=0.35]{pictures/volumes.png}
 	\caption{Области}
 	\label{fig: volumes}
 \end{figure}
 
-\newpage
 \subsection{Генерация сетки}
 
 Итак, область построена, теперь нужно сгенерировать сетку.
@@ -567,9 +566,9 @@ os.system("dolfin-convert ./domain/final.msh ./domain/mesh.xml")
 В итоге будем иметь несколько \textbf{.xml} файлов с описанием
 сетки на нашей области.
 
-\section{Реализация численного алгоритма}
+\section{Описание численного алгоритма}
 
-Для реализации численного алгоритма вновь будем использовать open-source
+Для реализации численного алгоритма будем использовать open-source
 инструмент \texttt{FEniCS} (\cite{fenics_book}), который предназначен для решения методом
 конечных элементов задач, описываемых уравнениями в частных производных. 
 
