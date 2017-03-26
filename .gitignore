@@ -1,4 +1,5 @@
 .DS_Store
+.idea/
 /mesh/
 /mesh2xml.py
 /mat2_p2D.py
@@ -11,19 +12,16 @@
 /xml_writer.pyc
 /domain/model3d.xml
 
-/Kozlenkov\ course\ work/.idea/
 /Kozlenkov\ course\ work/results
 /Kozlenkov\ course\ work/domain/*.msh
 /Kozlenkov\ course\ work/domain/*.xml
 /Kozlenkov\ course\ work/report
 
-
-/Kozlenkov\ diploma\ work/.idea/
 /Kozlenkov\ diploma\ work/results
 
 !/Kozlenkov\ diploma\ work/domain/
 /Kozlenkov\ diploma\ work/domain/*
-/Kozlenkov\ diploma\ work/domain/final.geo
+!/Kozlenkov\ diploma\ work/domain/final.geo
 
 !/Kozlenkov\ diploma\ work/report/
 /Kozlenkov\ diploma\ work/report/*
