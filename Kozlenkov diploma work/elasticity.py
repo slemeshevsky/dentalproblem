@@ -20,8 +20,8 @@ params = Parameters("parameters")
 param_file >> params
 info(params, True)
 
-nu_values = np.array([params['coefficients']['Poisson'][
-                     '1'], params['coefficients']['Poisson']['2']])
+nu_values = np.array([params['coefficients']['Poisson']['1'], 
+                        params['coefficients']['Poisson']['2']])
 E_values = np.array([params['coefficients']['Young']['1'],
                      params['coefficients']['Young']['2']])
 g_value = [params['boundCoefficients']['g']['1']['x'],
@@ -133,6 +133,14 @@ Ln = (1/FacetArea(mesh))*v*Tn*ds
 Lt = (1/FacetArea(mesh))*inner(w, Tt)*ds
 assemble(Ln, tensor=normal_stress.vector())
 assemble(Lt, tensor=shear_stress.vector())
+
+k = sqrt(inner(Tt, Tt))
+rel = Function(scalar)
+rel_projection = (1/FacetArea(mesh))*v*k*ds
+assemble(rel_projection, tensor=rel.vector())
+
+rel_file = File("./results/rel.pvd")
+rel_file << rel
 
 # Сохраняем напряжения в файлы
 normal_stress_file = File("./results/normal_stress.pvd")
