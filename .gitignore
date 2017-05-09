@@ -1,5 +1,6 @@
 .DS_Store
 .idea/
+.vscode/
 /mesh/
 /mesh2xml.py
 /mat2_p2D.py

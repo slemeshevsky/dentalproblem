@@ -1,5 +1,5 @@
+DefineConstant[ alfa = { 6, Path "Gmsh/Parameters"}];
 DefineConstant[ lc = { 0.0005, Path "Gmsh/Parameters"}];
-DefineConstant[ alfa = { 5, Path "Gmsh/Parameters"}];
 DefineConstant[ height = { 0.012, Path "Gmsh/Parameters"}];
 DefineConstant[ width = { 0.008, Path "Gmsh/Parameters"}];
 DefineConstant[ space = { 0.001, Path "Gmsh/Parameters"}];

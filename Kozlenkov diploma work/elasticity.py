@@ -20,13 +20,13 @@ params = Parameters("parameters")
 param_file >> params
 info(params, True)
 
-nu_values = np.array([params['coefficients']['Poisson']['1'], 
-                        params['coefficients']['Poisson']['2']])
+nu_values = np.array([params['coefficients']['Poisson']['1'],
+                      params['coefficients']['Poisson']['2']])
 E_values = np.array([params['coefficients']['Young']['1'],
                      params['coefficients']['Young']['2']])
-g_value = [params['boundCoefficients']['g']['1']['x'],
-           params['boundCoefficients']['g']['1']['y'],
-           params['boundCoefficients']['g']['1']['z']]
+g_value = [params['pressure']['g']['x'],
+           params['pressure']['g']['y'],
+           params['pressure']['g']['z']]
 mu_values = E_values / (2.0 * (1.0 + nu_values))
 lmbd_values = E_values * nu_values / \
     ((1.0 + nu_values) * (1.0 - 2.0 * nu_values))
@@ -35,9 +35,9 @@ mesh = Mesh(params['mesh']['path'])
 subdomains = MeshFunction("size_t", mesh, params['mesh']['domains'])
 boundaries = MeshFunction("size_t", mesh, params['mesh']['bounds'])
 
-subdomains_f = File(params['results']['subdomains'])
+subdomains_f = File(params['results']['destination']['subdomains'])
 subdomains_f << subdomains
-boundaries_f = File(params['results']['boundaries'])
+boundaries_f = File(params['results']['destination']['boundaries'])
 boundaries_f << boundaries
 
 n = FacetNormal(mesh)
@@ -88,7 +88,7 @@ L = inner(g, v) * ds(1)
 u = Function(V)
 solve(a == L, u, bc)
 
-displ_file = File(params['results']['displacement'])
+displ_file = File(params['results']['destination']['displacement'])
 displ_file << u
 
 mesh.move(u)
@@ -99,7 +99,7 @@ W = TensorFunctionSpace(mesh, "CG", 1)
 stress = Function(W)
 stress = project(sigma(u, mu, lmbda), W)
 
-stress_file = File(params['results']['stress'])
+stress_file = File(params['results']['destination']['stress'])
 stress_file << stress
 
 Q = FunctionSpace(mesh, "CG", 1)
@@ -118,7 +118,7 @@ T = dot(-s, n)
 
 # Вычисляем нормальные и тангенциальные компоненты
 Tn = inner(T, n)  # скаляр
-Tt = T - Tn*n   # вектор
+Tt = T - Tn * n   # вектор
 
 # Кусочно-постоянные тестовые функции
 scalar = FunctionSpace(mesh, "DG", 0)
@@ -129,21 +129,21 @@ w = TestFunction(vector)
 # Получаем кусочно-постоянные функции для напряжений
 normal_stress = Function(scalar)
 shear_stress = Function(vector)
-Ln = (1/FacetArea(mesh))*v*Tn*ds
-Lt = (1/FacetArea(mesh))*inner(w, Tt)*ds
+Ln = (1 / FacetArea(mesh)) * v * Tn * ds
+Lt = (1 / FacetArea(mesh)) * inner(w, Tt) * ds
 assemble(Ln, tensor=normal_stress.vector())
 assemble(Lt, tensor=shear_stress.vector())
 
-k = sqrt(inner(Tt, Tt))
+k = Tn - 0.3 * sqrt(dot(Tt, Tt))
 rel = Function(scalar)
-rel_projection = (1/FacetArea(mesh))*v*k*ds
+rel_projection = (1 / FacetArea(mesh)) * v * k * ds
 assemble(rel_projection, tensor=rel.vector())
 
-rel_file = File("./results/rel.pvd")
+rel_file = File(params['results']['destination']['relation'])
 rel_file << rel
 
 # Сохраняем напряжения в файлы
-normal_stress_file = File("./results/normal_stress.pvd")
+normal_stress_file = File(params['results']['destination']['normal_stress'])
 normal_stress_file << normal_stress
-shear_stress_file = File("./results/shear_stress.pvd")
+shear_stress_file = File(params['results']['destination']['shear_stress'])
 shear_stress_file << shear_stress

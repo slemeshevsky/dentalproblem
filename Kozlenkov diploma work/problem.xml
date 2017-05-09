@@ -1,35 +1,65 @@
 <?xml version="1.0"?>
 <dolfin xmlns:dolfin="http://fenicsproject.org">
-    <parameters name="dolfin">
-        <parameters name="mesh">
-            <parameter key="path" type="string" value="./domain/mesh.xml"/>
-            <parameter key="domains" type="string" value="./domain/mesh_physical_region.xml"/>
-            <parameter key="bounds" type="string" value="./domain/mesh_facet_region.xml"/>
-        </parameters>
-        <parameters name="coefficients">
-            <parameters name="Young">
-                <parameter key="1" type="double" value="29.0e9"/>
-                <parameter key="2" type="double" value="200e9"/>
-            </parameters>
-            <parameters name="Poisson">
-                <parameter key="1" type="double" value="0.3"/>
-                <parameter key="2" type="double" value="0.31"/>
-            </parameters>
-        </parameters>
-        <parameters name="boundCoefficients">
-            <parameters name="g">
-                <parameters name="1">
-                    <parameter key="x" type="double" value="0"/>
-                    <parameter key="y" type="double" value="1.0e9"/>
-                    <parameter key="z" type="double" value="0"/>
-                </parameters>
-            </parameters>
-        </parameters>
-        <parameters name="results">
-            <parameter key="displacement" type="string" value="./results/displacement.pvd"/>
-            <parameter key="stress" type="string" value="./results/stress.pvd"/>
-            <parameter key="subdomains" type="string" value="./results/subdomains.pvd"/>
-            <parameter key="boundaries" type="string" value="./results/boundaries.pvd"/>
-        </parameters>
+  <parameters name="dolfin">
+    <parameters name="angle">
+      <parameters name="options">
+        <parameter key="04deg" type="int" value="4" />
+        <parameter key="06deg" type="int" value="6" />
+      </parameters>
     </parameters>
+    <parameters name="coefficients">
+      <parameters name="Poisson">
+        <parameter key="1" type="double" value="0.29999999999999999" />
+        <parameter key="2" type="double" value="0.31" />
+      </parameters>
+      <parameters name="Young">
+        <parameter key="1" type="double" value="29000000000" />
+        <parameter key="2" type="double" value="200000000000" />
+      </parameters>
+    </parameters>
+    <parameters name="mesh">
+      <parameter key="bounds" type="string" value="./domain/mesh_facet_region.xml" />
+      <parameter key="domains" type="string" value="./domain/mesh_physical_region.xml" />
+      <parameter key="path" type="string" value="./domain/mesh.xml" />
+    </parameters>
+    <parameters name="pressure">
+      <parameters name="g">
+        <parameter key="x" type="double" value="0" />
+        <parameter key="y" type="double" value="100000000" />
+        <parameter key="z" type="double" value="0" />
+      </parameters>
+      <parameters name="options">
+        <parameters name="down">
+          <parameter key="x" type="double" value="0" />
+          <parameter key="y" type="double" value="-100000000" />
+          <parameter key="z" type="double" value="0" />
+        </parameters>
+        <parameters name="up">
+          <parameter key="x" type="double" value="0" />
+          <parameter key="y" type="double" value="100000000" />
+          <parameter key="z" type="double" value="0" />
+        </parameters>
+      </parameters>
+    </parameters>
+    <parameters name="results">
+      <parameters name="destination">
+        <parameter key="boundaries" type="string" value="./results/up_06deg/boundaries.pvd" />
+        <parameter key="displacement" type="string" value="./results/up_06deg/displacement.pvd" />
+        <parameter key="normal_stress" type="string" value="./results/up_06deg/normal_stress.pvd" />
+        <parameter key="relation" type="string" value="./results/up_06deg/relation.pvd" />
+        <parameter key="shear_stress" type="string" value="./results/up_06deg/shear_stress.pvd" />
+        <parameter key="stress" type="string" value="./results/up_06deg/stress.pvd" />
+        <parameter key="subdomains" type="string" value="./results/up_06deg/subdomains.pvd" />
+      </parameters>
+      <parameters name="template">
+        <parameter key="boundaries" type="string" value="./results/{SUBFOLDER}/boundaries.pvd" />
+        <parameter key="displacement" type="string" value="./results/{SUBFOLDER}/displacement.pvd" />
+        <parameter key="normal_stress" type="string" value="./results/{SUBFOLDER}/normal_stress.pvd" />
+        <parameter key="relation" type="string" value="./results/{SUBFOLDER}/relation.pvd" />
+        <parameter key="shear_stress" type="string" value="./results/{SUBFOLDER}/shear_stress.pvd" />
+        <parameter key="stress" type="string" value="./results/{SUBFOLDER}/stress.pvd" />
+        <parameter key="subdomains" type="string" value="./results/{SUBFOLDER}/subdomains.pvd" />
+      </parameters>
+    </parameters>
+  </parameters>
 </dolfin>

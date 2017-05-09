@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<dolfin xmlns:dolfin="http://fenicsproject.org">
+    <parameters name="dolfin">
+        <parameters name="mesh">
+            <parameter key="path" type="string" value="./domain/mesh.xml"/>
+            <parameter key="domains" type="string" value="./domain/mesh_physical_region.xml"/>
+            <parameter key="bounds" type="string" value="./domain/mesh_facet_region.xml"/>
+        </parameters>
+        <parameters name="coefficients">
+            <parameters name="Young">
+                <parameter key="1" type="double" value="29.0e9"/>
+                <parameter key="2" type="double" value="200e9"/>
+            </parameters>
+            <parameters name="Poisson">
+                <parameter key="1" type="double" value="0.3"/>
+                <parameter key="2" type="double" value="0.31"/>
+            </parameters>
+        </parameters>
+        <parameters name="angle">
+            <parameters name="options">
+                <parameter key="04deg" type="int" value="4"/>
+                <parameter key="06deg" type="int" value="6"/>
+                <parameter key="08deg" type="int" value="8"/>
+                <parameter key="10deg" type="int" value="10"/>
+                <parameter key="12deg" type="int" value="12"/>
+            </parameters>
+        </parameters>
+        <parameters name="pressure">
+            <parameters name="g">
+                <parameter key="x" type="double" value="" />
+                <parameter key="y" type="double" value="" />
+                <parameter key="z" type="double" value="" />
+            </parameters>
+            <parameters name="options">
+                <parameters name="down">
+                    <parameter key="x" type="double" value="0"/>
+                    <parameter key="y" type="double" value="-1.0e8"/>
+                    <parameter key="z" type="double" value="0"/>
+                </parameters>
+                <parameters name="up">
+                    <parameter key="x" type="double" value="0"/>
+                    <parameter key="y" type="double" value="1.0e8"/>
+                    <parameter key="z" type="double" value="0"/>
+                </parameters>
+            </parameters>
+        </parameters>
+        <parameters name="results">
+            <parameters name="destination">
+                <parameter key="boundaries" type="string" value=""/>
+                <parameter key="displacement" type="string" value=""/>
+                <parameter key="stress" type="string" value=""/>
+                <parameter key="subdomains" type="string" value=""/>
+                <parameter key="relation" type="string" value=""/>
+                <parameter key="normal_stress" type="string" value=""/>
+                <parameter key="shear_stress" type="string" value=""/>
+            </parameters>
+            <parameters name="template">
+                <parameter key="boundaries" type="string" value="./results/{SUBFOLDER}/boundaries.pvd"/>
+                <parameter key="displacement" type="string" value="./results/{SUBFOLDER}/displacement.pvd"/>
+                <parameter key="stress" type="string" value="./results/{SUBFOLDER}/stress.pvd"/>
+                <parameter key="subdomains" type="string" value="./results/{SUBFOLDER}/subdomains.pvd"/>
+                <parameter key="relation" type="string" value="./results/{SUBFOLDER}/relation.pvd"/>
+                <parameter key="normal_stress" type="string" value="./results/{SUBFOLDER}/normal_stress.pvd"/>
+                <parameter key="shear_stress" type="string" value="./results/{SUBFOLDER}/shear_stress.pvd"/>
+            </parameters>
+        </parameters>
+    </parameters>
+</dolfin>
