@@ -134,15 +134,13 @@ Lt = (1 / FacetArea(mesh)) * inner(w, Tt) * ds
 assemble(Ln, tensor=normal_stress.vector())
 assemble(Lt, tensor=shear_stress.vector())
 
-k = Tn - 0.3 * sqrt(dot(Tt, Tt))
+k = 0.15 * Tn - sqrt(dot(Tt, Tt))
 rel = Function(scalar)
 rel_projection = (1 / FacetArea(mesh)) * v * k * ds
 assemble(rel_projection, tensor=rel.vector())
 
-rel_file = File(params['results']['destination']['relation'])
-rel_file << rel
-
-# Сохраняем напряжения в файлы
+relation_file = File(params['results']['destination']['relation'])
+relation_file << rel
 normal_stress_file = File(params['results']['destination']['normal_stress'])
 normal_stress_file << normal_stress
 shear_stress_file = File(params['results']['destination']['shear_stress'])

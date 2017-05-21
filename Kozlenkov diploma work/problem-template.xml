@@ -32,16 +32,31 @@
                 <parameter key="z" type="double" value="" />
             </parameters>
             <parameters name="options">
-                <parameters name="down">
+                <parameters name="down1">
                     <parameter key="x" type="double" value="0"/>
                     <parameter key="y" type="double" value="-1.0e8"/>
                     <parameter key="z" type="double" value="0"/>
                 </parameters>
-                <parameters name="up">
+                <parameters name="down2">
+                    <parameter key="x" type="double" value="0"/>
+                    <parameter key="y" type="double" value="-2.0e8"/>
+                    <parameter key="z" type="double" value="0"/>
+                </parameters>
+                <parameters name="down4">
+                    <parameter key="x" type="double" value="0"/>
+                    <parameter key="y" type="double" value="-4.0e8"/>
+                    <parameter key="z" type="double" value="0"/>
+                </parameters>
+                <parameters name="down8">
+                    <parameter key="x" type="double" value="0"/>
+                    <parameter key="y" type="double" value="-8.0e8"/>
+                    <parameter key="z" type="double" value="0"/>
+                </parameters>
+                <!--<parameters name="up">
                     <parameter key="x" type="double" value="0"/>
                     <parameter key="y" type="double" value="1.0e8"/>
                     <parameter key="z" type="double" value="0"/>
-                </parameters>
+                </parameters>-->
             </parameters>
         </parameters>
         <parameters name="results">
