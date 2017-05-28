@@ -296,7 +296,8 @@ boundary problems for partial differential equations of the elliptic type.
 неординарной формы области. Посему, для решения таких
 задач широко используются численные методы.
 
-Метод конечных элементов \cite{finite_element_method} -- это численный метод, 
+Метод конечных элементов (\cite{finite_element_method},
+\cite{projection_mesh_method}) -- это численный метод, 
 предназначенный также для решен-ия 
 дифференциальных уравнений в частных производных, 
 возникающих при решении задач математической физики. 
@@ -320,7 +321,7 @@ boundary problems for partial differential equations of the elliptic type.
 решение.
 Метод конечных элементов имеет несколько преимуществ 
 по сравнению со свои ближайшим аналогом -- методом 
-конечных разностей (МКР): МКЭ позволяет работать с более 
+конечных разностей: МКЭ позволяет работать с более 
 сложными областями; также найденная функция сразу является 
 решением -- при использовании МКР еще нужно построить
 сплайн (или другую интерполяцию).
@@ -354,7 +355,8 @@ boundary problems for partial differential equations of the elliptic type.
 где  $u_i = x'_i - x_i$. Деформированное состояние тела
 полностью описывается заданием вектора упругих деформаций для каждой точки тела.
 
-Задача \texttt{теории упругости} (\cite{math_elasticity_theory}) состоит в 
+Задача \texttt{теории упругости} (\cite{math_elasticity_theory},
+\cite{landau}) состоит в 
 отыскании вектора $\textbf{u}$ как функции, исходя из начальных условий.
 
 \subsection{Описание рассматриваемой задачи}
@@ -1128,6 +1130,15 @@ $8 \cdot 10^8$     & 60.6 & 50.4 & 36.1 & 25.3 &  22.3  \\
 			Logg A.,
 			{Automated Solution of Differential Equations by the Finite Element Method. The FEniCS book} /
 			Anders Logg, Kent-Andre Mardal, Garth N. Wells, -- Berlin: Shpringer, 2011. -- 720 c.
+	\bibitem{projection_mesh_method}
+			Марчук Г.И.,
+			{Введение в проекционно-сеточные методы.} /
+			Марчук Г.И., Агошков В.И., -- Москва: Наука, 1981. -- 416
+			 c.
+	\bibitem{landau}
+			 Ландау Л.,
+			{Теория упругости.} /
+			Ландау Л., Лифшиц Е., -- М.: Наука, 1987. -- 248 c.
 \end{thebibliography}
 
 
