@@ -72,7 +72,8 @@ def mean_pressure(s):
 
 
 def deviatoric_stress(s):
-    return s - mean_pressure(s) * Identity(v.cell().topological_dimension())
+    return s - mean_pressure(s) * \
+        Identity(v.cell().topological_dimension())
 
 
 def von_Mises(v, mu, lmb):
@@ -141,7 +142,9 @@ assemble(rel_projection, tensor=rel.vector())
 
 relation_file = File(params['results']['destination']['relation'])
 relation_file << rel
-normal_stress_file = File(params['results']['destination']['normal_stress'])
+normal_stress_file = \
+    File(params['results']['destination']['normal_stress'])
 normal_stress_file << normal_stress
-shear_stress_file = File(params['results']['destination']['shear_stress'])
+shear_stress_file = \
+    File(params['results']['destination']['shear_stress'])
 shear_stress_file << shear_stress
